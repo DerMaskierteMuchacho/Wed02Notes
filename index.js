@@ -1,21 +1,24 @@
-const express = require('express');
-const bodyParser = require('body-parser');
+import express from 'express';
+import bodyParser from 'body-parser';
+import hbs from 'express-hbs';
+import path from 'path';
+import {noteRoutes} from './routes/noteRoutes.js';
+import {registerHelpers} from './utils/handlebar-util.js'
+import {overrideMiddleware} from "./utils/method-override.js";
 
 const app = express();
+app.engine('hbs', hbs.express4());
+app.set('view engine', 'hbs');
+app.set('views', path.resolve('views'));
+registerHelpers(hbs);
 
-app.use(bodyParser.urlencoded({ extended: false }));
+const router = express.Router();
+
+app.use(bodyParser.urlencoded({extended: false}));
 app.use(bodyParser.json());
-app.use(require("method-override")(function(req, res){
-    if (req.body && typeof req.body === 'object' && '_method' in req.body) {
-        let method = req.body._method;
-        delete req.body._method;
-        return method;
-    }
-}));
-
-
-app.use(require('./routes/noteRoutes.js'));
-app.use(express.static(__dirname + '/public'));
+app.use(overrideMiddleware);
+app.use(noteRoutes);
+app.use(express.static(path.resolve('public')));
 
 const hostname = '127.0.0.1';
 const port = 3001;

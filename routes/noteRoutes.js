@@ -1,7 +1,7 @@
-const express = require('express');
+import express from 'express';
 const router = express.Router();
-const notes = require('../controller/notesController.js');
+import {notesController} from '../controllers/notesController.js';
 
-router.get("/", notes.showIndex);
+router.get("/", notesController.showIndex.bind(notesController));
 
-module.exports = router;
+export const noteRoutes = router;

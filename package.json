@@ -1,0 +1,11 @@
+{
+  "type": "module",
+  "name": "Wed02Notes",
+  "version": "1.0.0",
+  "dependencies": {
+    "body-parser": "latest",
+    "express": "latest",
+    "express-hbs": "^2.3.4",
+    "method-override": "^3.0.0"
+  }
+}
