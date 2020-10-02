@@ -1,0 +1,41 @@
+<html>
+<head>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+<div class="row-md-1">
+<input type="button" value="create new Note" />
+<select>
+    <option selected>Default</option>
+    <option>Dark</option>
+</select>
+</div>
+<div class="row-md-2">
+    <input type="button" value="order by" />
+</div>
+<div class="row-md-3">
+<table>
+    <tr>
+    <th>Task completion</th>
+    <th>Creation Date</th>
+    <th>Importance</th>
+    </tr>
+    <tr>
+        <td><input type="checkbox" id="hans" name="is finished"> <label for="hans">is finished</label> </td>
+        <td>note title</td>
+        <td><span class="fa fa-star checked"></span>
+            <span class="fa fa-star checked"></span>
+            <span class="fa fa-star checked"></span>
+            <span class="fa fa-star"></span>
+            <span class="fa fa-star"></span></td>
+        <td><input type="button" value="edit"></td>
+    </tr>
+</table>
+</div>
+    
+    <img id="note" src="/images/important-note.png" alt="note">
+
+</body>
+</html>

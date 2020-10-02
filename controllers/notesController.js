@@ -1,8 +1,21 @@
-//import {orderStore} from '../services/orderStore.js'
+//import {orderStore} from '../services/noteStore.js'
 
 export class NotesController {
+
     showIndex(req, res) {
-        res.render("home");
+        res.render("index");
+        /*
+        let entry = {hans: "hans", ueli: "ueli"};
+        let entry2 = {hans: "hans2", ueli: "ueli2"};
+        let list = {entry, entry2};
+        res.render("home",{
+            test: "Hello World!",
+            test2: {
+                hello: "Hello",
+                world: "world"
+            },
+            test3: list
+        });*/
     };
 /*
     createOrder(req, res) {
