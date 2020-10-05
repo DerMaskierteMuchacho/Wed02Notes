@@ -3,7 +3,19 @@
 export class NotesController {
 
     showIndex(req, res) {
-        res.render("index");
+        res.render("index", {layout: 'layouts/layout'})
+        //https://hackersandslackers.com/handlebars-templates-expressjs/
+
+
+        /*
+        * res.render("home.hbs", {
+            visualWeb: visualWeb,
+            btnObj: this.activeButton,
+            nodes: this.giveObjectForPrint()
+        });
+        * */
+
+
         /*
         let entry = {hans: "hans", ueli: "ueli"};
         let entry2 = {hans: "hans2", ueli: "ueli2"};
@@ -20,8 +32,9 @@ export class NotesController {
 
     createNote(req, res)
     {
-        res.render("add");
+        res.render("add", {layout: 'layouts/layout'})
     };
+
 /*
     createOrder(req, res) {
         res.render("newOrder");
