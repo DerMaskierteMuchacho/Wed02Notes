@@ -17,6 +17,11 @@ export class NotesController {
             test3: list
         });*/
     };
+
+    createNote(req, res)
+    {
+        res.render("add");
+    };
 /*
     createOrder(req, res) {
         res.render("newOrder");

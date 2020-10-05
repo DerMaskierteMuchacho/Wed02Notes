@@ -2,9 +2,13 @@
     color: orange;
 }
 
-#note
-{
+#note {
     position: fixed;
     bottom: 30px;
     right: 30px;
+}
+
+.slider {
+    float: left;
+    display: inline;
 }
