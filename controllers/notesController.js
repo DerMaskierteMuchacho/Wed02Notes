@@ -3,7 +3,15 @@
 export class NotesController {
 
     showIndex(req, res) {
-        res.render("index", {layout: 'layouts/layout'})
+
+        let note = ["Hans", "Ueli"];
+
+
+        res.render("index",
+            {
+                layout: 'layouts/layout',
+                note: note
+            })
         //https://hackersandslackers.com/handlebars-templates-expressjs/
 
 

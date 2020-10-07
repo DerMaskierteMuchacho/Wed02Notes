@@ -1,31 +1,37 @@
-<div class="row-md-1 col-ld-1">
-    <form action='/new' method='get'><input type='submit' value='create new Note'></form>
-    <select>
+<div class="container">
+<div class="row">
+    <form action='/new' method='get'>
+        <input class="col-md" type='submit' value='create new Note'>
+    </form>
+    <select class="col-md-2">
         <option selected>Default</option>
         <option>Dark</option>
     </select>
+
 </div>
-<div class="row-md-2 col-ld-1">
+<div class="row">
     <input type="button" value="order by"/>
 </div>
-<div class="row-md-3 col-ld-1">
+<div class="row">
     <table>
         <tr>
-            <th>Task completion</th>
-            <th>Creation Date</th>
-            <th>Importance</th>
+            <th class="col-md-2">Task completion</th>
+            <th class="col-md-8">Creation Date</th>
+            <th class="col-md-2">Importance</th>
         </tr>
         <tr>
-            <td><input type="checkbox" id="hans" name="is finished"> <label for="hans">is finished</label></td>
-            <td>note title</td>
-            <td><span class="fa fa-star checked"></span>
+            <td class="col-md-2"><input type="checkbox" id="hans" name="is finished"> <label for="hans">is finished</label></td>
+            <td class="col-md-8">note title</td>
+            <td class="col-md-2"><span class="fa fa-star checked"></span>
                 <span class="fa fa-star checked"></span>
                 <span class="fa fa-star checked"></span>
                 <span class="fa fa-star"></span>
                 <span class="fa fa-star"></span></td>
-            <td><input type="button" value="edit"></td>
+            <td class="col-md-1"><input type="button" value="edit"></td>
         </tr>
     </table>
+    {{#each note}}
+    {{this}}<br>
+    {{/each}}
 </div>
-
-<img id="note" src="/images/important-note.png" alt="note">
+</div>
