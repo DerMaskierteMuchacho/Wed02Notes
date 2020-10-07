@@ -2,6 +2,7 @@
     <h1 class="text-center">New TODO</h1>
     <hr>
     <div class="col-md-1 mx-auto">
+        <form action='/new' method='post'>
         <label for="title">Title</label>
         <input type="text" id="title"/>
         <br>
@@ -20,7 +21,9 @@
         <input type="checkbox" id="done"/>
         <br>
         <!--        <label for="create">Create</label>-->
-        <input type="button" id="create" value="Create"/>
+
+            <input type="submit" id="create" value="Create"/>
+        </form>
         <!--        <label for="cancel">Cancel</label>-->
         <form action='/' method='get'><input type='submit' value='Cancel'></form>
     </div>

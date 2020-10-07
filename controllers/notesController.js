@@ -1,12 +1,10 @@
-//import {orderStore} from '../services/noteStore.js'
+import {noteStore} from '../services/noteStore.js'
 
 export class NotesController {
 
     showIndex(req, res) {
 
         let note = ["Hans", "Ueli"];
-
-
         res.render("index",
             {
                 layout: 'layouts/layout',
@@ -38,28 +36,35 @@ export class NotesController {
         });*/
     };
 
-    createNote(req, res)
-    {
+    showCreateNote(req, res) {
         res.render("add", {layout: 'layouts/layout'})
     };
 
-/*
-    createOrder(req, res) {
-        res.render("newOrder");
+    async createNote(req, res) {
+        await res.render("add", {layout: 'layouts/layout'}, await noteStore.get(req.body.title, req.body.description))
     };
 
-    async createPizza(req, res) {
-        await res.render("succeeded", await orderStore.add(req.body.name, "unkown"));
+    async getNotes(req, res) {
+        await res.render("all", {layout: 'layouts/layout'}, await noteStore.all())
     };
 
-    async showOrder(req, res) {
-        await res.render("showorder", await orderStore.get(req.params.id));
-    };
+    /*
+        createOrder(req, res) {
+            res.render("newOrder");
+        };
 
-    async deleteOrder(req, res) {
-        await res.render("showorder", await orderStore.delete(req.params.id));
-    };
-*/
+        async createPizza(req, res) {
+            await res.render("succeeded", await noteStore.add(req.body.name, "unkown"));
+        };
+
+        async showOrder(req, res) {
+            await res.render("showorder", await noteStore.get(req.params.id));
+        };
+
+        async deleteOrder(req, res) {
+            await res.render("showorder", await noteStore.delete(req.params.id));
+        };
+    */
 }
 
 export const notesController = new NotesController();
