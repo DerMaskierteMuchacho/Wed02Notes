@@ -4,19 +4,23 @@
     <div class="col-md-1 mx-auto">
         <form action='/new' method='post'>
         <label for="title">Title</label>
-        <input type="text" id="title"/>
+        <input type="text" name="title" id="title" required/>
         <br>
+
         <label for="description">Description</label>
-        <textarea id="description"></textarea>
+        <textarea id="description" name="description"></textarea>
         <br>
+
         <label for="importance">Importance</label>
         <p class="slider">low</p>
         <input class="slider" type="range" min="1" max="5" value="1" class="slider" id="importance">
         <p class="slider">high</p>
         <br>
+
         <label for="doneTill">Done till</label>
         <input type="date" id="doneTill"/>
         <br>
+
         <label for="done">Done</label>
         <input type="checkbox" id="done"/>
         <br>

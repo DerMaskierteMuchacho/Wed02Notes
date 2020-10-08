@@ -41,11 +41,13 @@ export class NotesController {
     };
 
     async createNote(req, res) {
-        await res.render("add", {layout: 'layouts/layout'}, await noteStore.get(req.body.title, req.body.description))
+        await res.render("add", {layout: 'layouts/layout'}, await noteStore.add(req.body.title, req.body.description))
+        //await res.render("add", {layout: 'layouts/layout'}, await noteStore.add("hans", "ueli"))
     };
 
     async getNotes(req, res) {
         await res.render("all", {layout: 'layouts/layout'}, await noteStore.all())
+        //await res.render("all", {layout: 'layouts/layout'})
     };
 
     /*

@@ -1,4 +1,4 @@
-import Datastore from 'nedb-promise'
+import Datastore from 'nedb'
 //import {Note} from "../model/note";
 
 export class Note {
@@ -18,21 +18,26 @@ export class NoteStore {
     }
 
     async add(title, description) {
-        let note = new Note("Hans", "Ueli", 2, new Date(), false);
-        return await this.db.insert(note);
+        let note = new Note(title, description, 2, new Date(), false);
+        return await this.db.insert(note, () => {});
     }
 
     async delete(id) {
-        await this.db.update({_id: id}, {$set: {"state": "DELETED"}});
-        return await this.get(id);
+        await this.db.update({_id: id}, {$set: {"state": "DELETED"}}, () => {});
+        return await this.get(id, () => {});
     }
 
     async get(id) {
-        return await this.db.findOne({_id: id});
+        return await this.db.findOne({_id: id}, () => {});
     }
 
     async all() {
-        return await this.db.find({});
+        let hans = null;
+        await this.db.find({}, (err, docs) => {
+            console.log("hans "+docs);
+            hans = docs});
+        console.log("ueli "+hans);
+        return hans;
     }
 }
 
