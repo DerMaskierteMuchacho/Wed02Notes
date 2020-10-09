@@ -1,45 +1,57 @@
 <div class="container">
-<div class="row">
-    <form action='/new' method='get'>
-        <input class="col-md" type='submit' value='create new Note'>
-    </form>
-    <select class="col-md-2">
-        <option selected>Default</option>
-        <option>Dark</option>
-    </select>
+    <div class="row">
+        <form action='/new' method='get'>
+            <input class="col-md btn btn-primary" type='submit' value='create new Note'>
+        </form>
+        <select class="col-md-2">
+            <option selected>Default</option>
+            <option>Dark</option>
+        </select>
 
-</div>
-<div class="row">
-    <input type="button" value="order by"/>
-</div>
-<div class="row">
-    <table>
-        <tr>
-            <th class="col-md-2">Task completion</th>
-            <th class="col-md-6">Title</th>
-            <th class="col-md-2">Creation Date</th>
-            <th class="col-md-2">Importance</th>
-        </tr>
-        {{#each notes}}
+    </div>
+    <div class="row">
+        <input type="button" class="btn btn-primary" value="order by"/>
+    </div>
+    <div class="row">
+        <table>
             <tr>
-                <td class="col-md-2">
-                    <p>{{dueDate}}</p>
-                    <input type="checkbox" id="hans" name="is finished">
-                    <label for="hans">is finished</label>
-                </td>
-                <td class="col-md-6">
-                    <p>{{title}}</p>
-                    <textarea readonly>{{description}}</textarea>
-                </td>
-                <td class="col-md-2">{{creationDate}}</td>
-                <td class="col-md-2"><span class="fa fa-star checked"></span>
-                    <span class="fa fa-star checked"></span>
-                    <span class="fa fa-star checked"></span>
-                    <span class="fa fa-star"></span>
-                    <span class="fa fa-star"></span></td>
-                <td class="col-md-1"><input type="button" value="edit"></td>
+                <th class="col-md-2">Task completion</th>
+                <th class="col-md-6">Title</th>
+                <th class="col-md-2">Creation Date</th>
+                <th class="col-md-2">Importance</th>
             </tr>
-        {{/each}}
-    </table>
-</div>
+
+            <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+                Button with data-target
+            </button>
+            <div class="collapse" id="collapseExample">
+                <div class="card card-body">
+                    Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident.
+                </div>
+            </div>
+
+            {{#each notes}}
+                <tr>
+                    <td class="col-md-2">
+                        {{#unless done}}
+                            <p>{{dueDate}}</p>
+                        {{/unless}}
+                        <input type="checkbox" id="isFinished" name="is finished" {{#if done}}checked="true"{{/if}}>
+                        <label for="isFinished">is finished</label>
+                    </td>
+                    <td class="col-md-6">
+                        <p>{{title}}</p>
+                        <textarea readonly>{{description}}</textarea>
+                    </td>
+                    <td class="col-md-2">{{creationDate}}</td>
+                    <td class="col-md-2">
+                        {{{importance}}}
+                    </td>
+                    <td class="col-md-1">
+                        <input class="btn btn-primary" type="button" value="edit">
+                    </td>
+                </tr>
+            {{/each}}
+        </table>
+    </div>
 </div>

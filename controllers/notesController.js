@@ -6,7 +6,7 @@ export class NotesController {
         res.render("index",
             {
                 layout: 'layouts/layout',
-                notes: await noteStore.all()
+                notes: this.getDisplayObj(await noteStore.all())
             })
         //https://hackersandslackers.com/handlebars-templates-expressjs/
     };
@@ -18,19 +18,36 @@ export class NotesController {
     async createNote(req, res) {
         await res.render("add", {layout: 'layouts/layout'},
             await noteStore.add(req.body.title,
-                                req.body.description,
-                                req.body.importance,
-                                req.body.dueDate,
-                                req.body.done))
+                req.body.description,
+                req.body.importance,
+                req.body.dueDate,
+                req.body.done))
     };
 
     async getNotes(req, res) {
         await res.render("all",
             {
                 layout: 'layouts/layout',
-                notes: await noteStore.all()
+                notes: this.getDisplayObj(await noteStore.all())
             });
     };
+
+    getDisplayObj(array) {
+        array.forEach(function (item) {
+            let stars = item.importance;
+            let i = 0;
+            let string = "";
+            for (i = 0; i < stars; i++) {
+                string += "<span class=\"fa fa-star checked\"></span>"
+            }
+            for (i = 0; i < 5 - stars; i++) {
+                string += "<span class=\"fa fa-star\"></span>"
+            }
+            item.importance = string;
+        });
+
+        return array;
+    }
 
     /*
         createOrder(req, res) {
