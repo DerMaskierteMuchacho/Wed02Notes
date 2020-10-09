@@ -2,12 +2,12 @@ import Datastore from 'nedb'
 //import {Note} from "../model/note";
 
 export class Note {
-    constructor(noteTitle, noteDescription, importance, dateTill, done) {
-        this.noteTitle = noteTitle;
-        this.noteDescription = noteDescription;
+    constructor(title, description, importance, dueDate, done) {
+        this.title = title;
+        this.description = description;
         this.importance = importance;
-        this.dateTill = dateTill;
-        //this.dateTill = new Date();
+        this.dueDate = dueDate;
+        this.creationDate = new Date().toLocaleDateString();
         this.done = done;
     }
 }
@@ -17,8 +17,8 @@ export class NoteStore {
         this.db = db || new Datastore({filename: './data/notes.db', autoload: true});
     }
 
-    async add(title, description) {
-        let note = new Note(title, description, 2, new Date(), false);
+    async add(title, description, importance, dueDate, done) {
+        let note = new Note(title, description, importance, dueDate, done);
         return await this.db.insert(note, () => {});
     }
 
@@ -32,12 +32,7 @@ export class NoteStore {
     }
 
     async all() {
-        let hans = null;
-        await this.db.find({}, (err, docs) => {
-            console.log("hans "+docs);
-            hans = docs});
-        console.log("ueli "+hans);
-        return hans;
+        return await this.db.getAllData();
     }
 }
 

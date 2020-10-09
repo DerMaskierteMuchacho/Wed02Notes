@@ -2,38 +2,13 @@ import {noteStore} from '../services/noteStore.js'
 
 export class NotesController {
 
-    showIndex(req, res) {
-
-        let note = ["Hans", "Ueli"];
+    async showIndex(req, res) {
         res.render("index",
             {
                 layout: 'layouts/layout',
-                note: note
+                notes: await noteStore.all()
             })
         //https://hackersandslackers.com/handlebars-templates-expressjs/
-
-
-        /*
-        * res.render("home.hbs", {
-            visualWeb: visualWeb,
-            btnObj: this.activeButton,
-            nodes: this.giveObjectForPrint()
-        });
-        * */
-
-
-        /*
-        let entry = {hans: "hans", ueli: "ueli"};
-        let entry2 = {hans: "hans2", ueli: "ueli2"};
-        let list = {entry, entry2};
-        res.render("home",{
-            test: "Hello World!",
-            test2: {
-                hello: "Hello",
-                world: "world"
-            },
-            test3: list
-        });*/
     };
 
     showCreateNote(req, res) {
@@ -41,13 +16,20 @@ export class NotesController {
     };
 
     async createNote(req, res) {
-        await res.render("add", {layout: 'layouts/layout'}, await noteStore.add(req.body.title, req.body.description))
-        //await res.render("add", {layout: 'layouts/layout'}, await noteStore.add("hans", "ueli"))
+        await res.render("add", {layout: 'layouts/layout'},
+            await noteStore.add(req.body.title,
+                                req.body.description,
+                                req.body.importance,
+                                req.body.dueDate,
+                                req.body.done))
     };
 
     async getNotes(req, res) {
-        await res.render("all", {layout: 'layouts/layout'}, await noteStore.all())
-        //await res.render("all", {layout: 'layouts/layout'})
+        await res.render("all",
+            {
+                layout: 'layouts/layout',
+                notes: await noteStore.all()
+            });
     };
 
     /*

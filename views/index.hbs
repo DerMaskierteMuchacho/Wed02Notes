@@ -16,22 +16,30 @@
     <table>
         <tr>
             <th class="col-md-2">Task completion</th>
-            <th class="col-md-8">Creation Date</th>
+            <th class="col-md-6">Title</th>
+            <th class="col-md-2">Creation Date</th>
             <th class="col-md-2">Importance</th>
         </tr>
-        <tr>
-            <td class="col-md-2"><input type="checkbox" id="hans" name="is finished"> <label for="hans">is finished</label></td>
-            <td class="col-md-8">note title</td>
-            <td class="col-md-2"><span class="fa fa-star checked"></span>
-                <span class="fa fa-star checked"></span>
-                <span class="fa fa-star checked"></span>
-                <span class="fa fa-star"></span>
-                <span class="fa fa-star"></span></td>
-            <td class="col-md-1"><input type="button" value="edit"></td>
-        </tr>
+        {{#each notes}}
+            <tr>
+                <td class="col-md-2">
+                    <p>{{dueDate}}</p>
+                    <input type="checkbox" id="hans" name="is finished">
+                    <label for="hans">is finished</label>
+                </td>
+                <td class="col-md-6">
+                    <p>{{title}}</p>
+                    <textarea readonly>{{description}}</textarea>
+                </td>
+                <td class="col-md-2">{{creationDate}}</td>
+                <td class="col-md-2"><span class="fa fa-star checked"></span>
+                    <span class="fa fa-star checked"></span>
+                    <span class="fa fa-star checked"></span>
+                    <span class="fa fa-star"></span>
+                    <span class="fa fa-star"></span></td>
+                <td class="col-md-1"><input type="button" value="edit"></td>
+            </tr>
+        {{/each}}
     </table>
-    {{#each note}}
-    {{this}}<br>
-    {{/each}}
 </div>
 </div>

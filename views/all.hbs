@@ -4,10 +4,10 @@
         <th class="col-md-8">Creation Date</th>
         <th class="col-md-2">Importance</th>
     </tr>
-{{#each note}}
+{{#each notes}}
     <tr>
-        <td class="col-md-2"><input type="checkbox" id="hans" name="is finished"> <label for="hans">is finished</label></td>
-        <td class="col-md-8">note title</td>
+        <td class="col-md-2"><input type="checkbox" id="hans" name="is finished"><label for="hans">is finished</label></td>
+        <td class="col-md-8"><p>{{title}}</p><p>{{description}}</p></td>
         <td class="col-md-2"><span class="fa fa-star checked"></span>
             <span class="fa fa-star checked"></span>
             <span class="fa fa-star checked"></span>
@@ -15,8 +15,7 @@
             <span class="fa fa-star"></span></td>
         <td class="col-md-1"><input type="button" value="edit"></td>
     </tr>
-    {{this}}<br>
-{{/each}}
+    {{/each}}
 </table>
 
 
