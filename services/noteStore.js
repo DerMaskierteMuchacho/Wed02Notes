@@ -1,5 +1,4 @@
 import Datastore from 'nedb'
-//import {Note} from "../model/note";
 
 export class Note {
     constructor(title, description, importance, dueDate, done) {

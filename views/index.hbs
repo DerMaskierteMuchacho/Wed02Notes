@@ -3,14 +3,20 @@
         <form action='/new' method='get'>
             <input class="col-md btn btn-primary" type='submit' value='create new Note'>
         </form>
-        <select class="col-md-2">
+
+        <select class="col-md-2" onchange="this.form.submit()">
             <option selected>Default</option>
             <option>Dark</option>
         </select>
 
     </div>
     <div class="row">
-        <input type="button" class="btn btn-primary" value="order by"/>
+        <form action='/?param1=foo' method='post'>
+            <input type="submit" class="btn btn-primary" value="order by due date"/>
+        </form>
+        <input type="button" class="btn btn-primary" value="order by creation date"/>
+        <input type="button" class="btn btn-primary" value="order by importance"/>
+        <input type="button" class="btn btn-primary" value="hide finished"/>
     </div>
     <div class="row">
         <table>
@@ -21,12 +27,14 @@
                 <th class="col-md-2">Importance</th>
             </tr>
 
-            <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+            <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseExample"
+                    aria-expanded="false" aria-controls="collapseExample">
                 Button with data-target
             </button>
             <div class="collapse" id="collapseExample">
                 <div class="card card-body">
-                    Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident.
+                    Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid.
+                    Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident.
                 </div>
             </div>
 
@@ -36,11 +44,10 @@
                         {{#unless done}}
                             <p>{{dueDate}}</p>
                         {{/unless}}
-                        <input type="checkbox" id="isFinished" name="is finished" {{#if done}}checked="true"{{/if}}>
-                        <label for="isFinished">is finished</label>
+                        <p>is finished: {{{done}}}</p>
                     </td>
                     <td class="col-md-6">
-                        <p>{{title}}</p>
+                        <h3>{{title}}</h3>
                         <textarea readonly>{{description}}</textarea>
                     </td>
                     <td class="col-md-2">{{creationDate}}</td>

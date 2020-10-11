@@ -1,0 +1,38 @@
+:root {
+    --main-color:#f06543;
+    --secondary-color:#d64045;
+}
+
+body {
+    background-color: #222222;
+    color: white;
+}
+
+.btn-primary,
+.btn-primary:hover{
+    background-color: var(--main-color);;
+    border-color: var(--secondary-color);;
+}
+
+.fa-star {
+    color: #cccccc;
+}
+
+hr {
+    border-top: 1px solid var(--main-color);
+}
+
+.checked {
+    color: orange;
+}
+
+input,
+textarea {
+    background-color: #444;
+    color: white;
+}
+
+tr {
+    border-bottom: 1pt solid white;
+}
+
