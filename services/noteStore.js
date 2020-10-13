@@ -16,22 +16,36 @@ export class NoteStore {
         this.db = db || new Datastore({filename: './data/notes.db', autoload: true});
     }
 
+    createNewNode(title, description, importance, dueDate, done)
+    {
+        return new Note(title, description, importance, dueDate, done);
+    }
+
     async add(title, description, importance, dueDate, done) {
         let note = new Note(title, description, importance, dueDate, done);
-        return await this.db.insert(note, () => {});
+        return await this.db.insert(note);
     }
 
     async delete(id) {
-        await this.db.update({_id: id}, {$set: {"state": "DELETED"}}, () => {});
-        return await this.get(id, () => {});
+        await this.db.update({_id: id}, {$set: {"state": "DELETED"}}, () => {
+        });
+        return await this.get(id, () => {
+        });
     }
 
     async get(id) {
-        return await this.db.findOne({_id: id}, () => {});
+        return await this.db.findOne({_id: id});
     }
 
     async all() {
-        return await this.db.getAllData();
+         return await this.db.getAllData();
+        //return await this.db.find({});
+    }
+
+    async getAllObjects(instance, callback, res) {
+        this.db.find({}, function (err, docs) {
+            return callback(instance, err, docs, res);
+        });
     }
 }
 
