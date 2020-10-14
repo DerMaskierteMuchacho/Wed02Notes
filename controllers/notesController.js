@@ -7,7 +7,7 @@ export class NotesController {
             {
                 layout: 'layouts/layout',
                 theme: this.getTheme(),
-                notes: this.getDisplayObj(await noteStore.all())
+                notes: this.getDisplayObj(this, await noteStore.all())
             })
         //https://hackersandslackers.com/handlebars-templates-expressjs/
     };
@@ -17,9 +17,8 @@ export class NotesController {
             {
                 layout: 'layouts/layout',
                 theme: this.getTheme(),
-                notes: this.getDisplayObj(list)
+                notes: this.getDisplayObj(this, list)
             })
-        //https://hackersandslackers.com/handlebars-templates-expressjs/
     };
 
     showCreateNote(req, res) {
@@ -37,11 +36,13 @@ export class NotesController {
             req.body.dueDate,
             req.body.done);
 
-        await this.showIndex(req, res);
+        //await this.showIndex(req, res);
+        res.redirect('/');
+        //https://expressjs.com/en/guide/routing.html
     };
 
-    getDisplayObj(array) {
-        let newArray=[];
+    getDisplayObj(instance, array) {
+        let newArray = [];
         newArray.length = array.length;
         let index = 0;
 
@@ -66,8 +67,7 @@ export class NotesController {
                     "            <path fill-rule=\"evenodd\" d=\"M15.354 2.646a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708 0l-3-3a.5.5 0 1 1 .708-.708L8 9.293l6.646-6.647a.5.5 0 0 1 .708 0z\"/>\n" +
                     "            <path fill-rule=\"evenodd\" d=\"M8 2.5A5.5 5.5 0 1 0 13.5 8a.5.5 0 0 1 1 0 6.5 6.5 0 1 1-3.25-5.63.5.5 0 1 1-.5.865A5.472 5.472 0 0 0 8 2.5z\"/>\n" +
                     "        </svg>"
-            }
-            else {
+            } else {
                 if (!item.done) {
                     doneString = "<svg style='color:red' width=\"1em\" height=\"1em\" viewBox=\"0 0 16 16\" class=\"bi bi-x-circle\" fill=\"currentColor\" xmlns=\"http://www.w3.org/2000/svg\">\n" +
                         "            <path fill-rule=\"evenodd\" d=\"M8 15A7 7 0 1 0 8 1a7 7 0 0 0 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z\"/>\n" +
@@ -76,7 +76,7 @@ export class NotesController {
                 }
             }
 
-            let newItem = noteStore.createNewNode(item.title, item.description, starString, item.dueDate, doneString);
+            let newItem = instance.createDisplayNote(item, starString, doneString);
             newArray[index] = newItem;
             index++;
         });
@@ -84,13 +84,65 @@ export class NotesController {
         return newArray;
     };
 
-    async orderBy(req, res)
-    {
-        if(req.query.orderby === 'dueDate')
-        {
+    createDisplayNote(item, importanceString, doneString) {
+        let displayNote =
+            {
+                title: item.title,
+                description: item.description,
+                importance: item.importance,
+                importanceString: importanceString,
+                dueDate: item.dueDate,
+                creationDate: item.creationDate,
+                done: item.done,
+                doneString: doneString,
+            };
+        return displayNote;
+    }
+
+    async orderBy(req, res) {
+        if (req.query.orderby === 'dueDate') {
             //await noteStore.getAllObjects(this, this.orderByDueDate, res);
-            this.orderIndex(res, await noteStore.all());
+            this.orderIndex(res, this.orderByDueDate(await noteStore.all()));
+        } else if (req.query.orderby === 'creationDate') {
+            this.orderIndex(res, this.orderByCreationDate(await noteStore.all()));
+        } else if (req.query.orderby === 'importance') {
+            this.orderIndex(res, this.orderByImportance(await noteStore.all()));
+        } if (req.query.hide === 'true') {
+            this.orderIndex(res, this.hideFinished(await noteStore.all()));
         }
+    }
+
+    orderByDueDate(array) {
+        return array.sort(function (a, b) {
+            // Turn your strings into dates, and then subtract them
+            // to get a value that is either negative, positive, or zero.
+            return new Date(b.dueDate) - new Date(a.dueDate);
+        });
+    }
+
+    orderByCreationDate(array) {
+        return array.sort(function (a, b) {
+            return new Date(b.creationDate) - new Date(a.creationDate);
+        });
+    }
+
+    orderByImportance(array) {
+        return array.sort(function (a, b) {
+            return b.importance - a.importance;
+        });
+    }
+
+    hideFinished(array) {
+        let filtered = [];
+
+        array.forEach(function (item) {
+            if(!item.done)
+            {
+                filtered.push(item);
+            }
+        });
+
+        return filtered;
     }
 
     /*

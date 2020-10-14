@@ -16,11 +16,6 @@ export class NoteStore {
         this.db = db || new Datastore({filename: './data/notes.db', autoload: true});
     }
 
-    createNewNode(title, description, importance, dueDate, done)
-    {
-        return new Note(title, description, importance, dueDate, done);
-    }
-
     async add(title, description, importance, dueDate, done) {
         let note = new Note(title, description, importance, dueDate, done);
         return await this.db.insert(note);

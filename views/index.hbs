@@ -14,9 +14,15 @@
         <form action='/?orderby=dueDate' method='post'>
             <input type="submit" class="btn btn-primary" value="order by due date"/>
         </form>
-        <input type="button" class="btn btn-primary" value="order by creation date"/>
-        <input type="button" class="btn btn-primary" value="order by importance"/>
-        <input type="button" class="btn btn-primary" value="hide finished"/>
+        <form action='/?orderby=creationDate' method='post'>
+            <input type="submit" class="btn btn-primary" value="order by creation date"/>
+        </form>
+        <form action='/?orderby=importance' method='post'>
+            <input type="submit" class="btn btn-primary" value="order by importance"/>
+        </form>
+        <form action='/?hide=true' method='post'>
+            <input type="submit" class="btn btn-primary" value="hide finished"/>
+        </form>
     </div>
     <div class="row">
         <table>
@@ -44,7 +50,7 @@
                         {{#unless done}}
                             <p>{{dueDate}}</p>
                         {{/unless}}
-                        <p>is finished: {{{done}}}</p>
+                        <p>is finished: {{{doneString}}}</p>
                     </td>
                     <td class="col-md-6">
                         <h3>{{title}}</h3>
@@ -52,7 +58,7 @@
                     </td>
                     <td class="col-md-2">{{creationDate}}</td>
                     <td class="col-md-2">
-                        {{{importance}}}
+                        {{{importanceString}}}
                     </td>
                     <td class="col-md-1">
                         <input class="btn btn-primary" type="button" value="edit">
