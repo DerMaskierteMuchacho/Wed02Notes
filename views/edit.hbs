@@ -1,0 +1,37 @@
+<div class="row-md-3">
+    <h1 class="text-center">Edit Note</h1>
+    <hr>
+    <div class="col-md-1 mx-auto">
+        <form action='/edit' method='post'>
+            <label for="title">Title</label>
+            <input type="text" name="title" id="title" required/>
+            <br>
+
+            <label for="description">Description</label>
+            <textarea id="description" name="description"></textarea>
+            <br>
+
+            <label for="importance">Importance</label>
+            <p class="slider">low</p>
+            <input class="slider" name="importance" type="range" min="1" max="5" value="1" class="slider"
+                   id="importance">
+            <p class="slider">high</p>
+            <br>
+
+            <label for="dueDate">due Date</label>
+            <input type="date" id="dueDate" name="dueDate" required/>
+            <br>
+
+            <label for="done">Done</label>
+            <input type="checkbox" id="done" name="done"/>
+            <br>
+            <!--        <label for="create">Create</label>-->
+
+            <input class="btn btn-primary" type="submit" id="save" value="Save changes"/>
+        </form>
+        <!--        <label for="cancel">Cancel</label>-->
+        <form action='/' method='get'>
+            <input class="btn btn-primary" type='submit' value='Cancel'>
+        </form>
+    </div>
+</div>

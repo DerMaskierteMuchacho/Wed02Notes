@@ -61,7 +61,9 @@
                         {{{importanceString}}}
                     </td>
                     <td class="col-md-1">
-                        <input class="btn btn-primary" type="button" value="edit">
+                        <form action='/edit?id={{id}}' method='post'>
+                            <input class="btn btn-primary" type="submit" value="edit">
+                        </form>
                     </td>
                 </tr>
             {{/each}}
