@@ -1,11 +1,21 @@
+:root {
+    --main-color: #008dd5;
+    --secondary-color: #03254e;
+}
+
 body {
     background-color: #edf2f4;
 }
 
 .btn {
-    background-color: #008dd5;
-    border-color: #03254e;
+    background-color: var(--main-color);
+    border-color: var(--secondary-color);
     color: white;
+}
+
+.btn:hover {
+    color: #212529;
+    text-decoration: none;
 }
 
 .checked {

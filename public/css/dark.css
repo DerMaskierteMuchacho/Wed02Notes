@@ -1,6 +1,6 @@
 :root {
-    --main-color:#f06543;
-    --secondary-color:#d64045;
+    --main-color: #f06543;
+    --secondary-color: #d64045;
 }
 
 body {
@@ -9,9 +9,9 @@ body {
 }
 
 .btn,
-.btn:hover{
-    background-color: var(--main-color);;
-    border-color: var(--secondary-color);;
+.btn:hover {
+    background-color: var(--main-color);
+    border-color: var(--secondary-color);
 }
 
 .fa-star {

@@ -12,18 +12,16 @@
 
     /*grid-template-columns: auto auto auto auto auto;*/
 }
+
 .grid-item {
     border-bottom: 1px solid rgba(0, 0, 0, 0.8);
 }
 
-body{
-    font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
+body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
 }
 
-.btn
-{
-    background-color: #0069d9;
-    border-color: #0062cc;
+.btn {
     display: inline-block;
     font-weight: 400;
     text-align: center;
@@ -33,15 +31,10 @@ body{
     font-size: 1rem;
     line-height: 1.5;
     border-radius: .25rem;
-    transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+    transition: color .15s ease-in-out, background-color .15s ease-in-out, border-color .15s ease-in-out, box-shadow .15s ease-in-out;
     -webkit-appearance: button;
     overflow: visible;
     margin: 0;
     font-family: inherit;
     box-sizing: border-box;
-}
-
-.btn:hover {
-    color: #212529;
-    text-decoration: none;
 }
