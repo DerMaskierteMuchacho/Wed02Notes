@@ -2,15 +2,12 @@ body {
     background-color: #edf2f4;
 }
 
-.btn-primary {
+.btn {
     background-color: #008dd5;
     border-color: #03254e;
+    color: white;
 }
 
 .checked {
     color: orange;
-}
-
-tr {
-    border-bottom: 1pt solid black;
 }

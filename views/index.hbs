@@ -2,7 +2,7 @@
 
     <div class="row">
         <form action='/new' method='get'>
-            <input class="col-md btn btn-primary" type='submit' value='create new Note'>
+            <input class="col-md btn" type='submit' value='create new Note'>
         </form>
 
         <form action='/' method='post'>
@@ -15,16 +15,16 @@
     </div>
     <div class="row">
         <form action='/?orderby=dueDate' method='post'>
-            <input type="submit" class="btn btn-primary" value="order by due date"/>
+            <input type="submit" class="btn" value="order by due date"/>
         </form>
         <form action='/?orderby=creationDate' method='post'>
-            <input type="submit" class="btn btn-primary" value="order by creation date"/>
+            <input type="submit" class="btn" value="order by creation date"/>
         </form>
         <form action='/?orderby=importance' method='post'>
-            <input type="submit" class="btn btn-primary" value="order by importance"/>
+            <input type="submit" class="btn" value="order by importance"/>
         </form>
         <form action='/?hide=true' method='post'>
-            <input type="submit" class="btn btn-primary" value="hide finished"/>
+            <input type="submit" class="btn" value="hide finished"/>
         </form>
     </div>
 
@@ -51,7 +51,7 @@
             <div class="grid-item"><p>{{{importanceString}}}</p></div>
             <div class="grid-item">
                 <form action='/edit?id={{id}}' method='post'>
-                    <input class="btn btn-primary" type="submit" value="edit">
+                    <input class="btn" type="submit" value="edit">
                 </form>
             </div>
         {{/each}}

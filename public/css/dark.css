@@ -8,8 +8,8 @@ body {
     color: white;
 }
 
-.btn-primary,
-.btn-primary:hover{
+.btn,
+.btn:hover{
     background-color: var(--main-color);;
     border-color: var(--secondary-color);;
 }
@@ -30,9 +30,5 @@ input,
 textarea {
     background-color: #444;
     color: white;
-}
-
-tr {
-    border-bottom: 1pt solid white;
 }
 
