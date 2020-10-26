@@ -69,9 +69,13 @@ export class NotesController {
             this.orderIndex(res, orderHelper.orderByCreationDate(await noteStore.all()));
         } else if (req.query.orderby === 'importance') {
             this.orderIndex(res, orderHelper.orderByImportance(await noteStore.all()));
-        } if (req.query.hide !== undefined) {
+        } else if (req.query.hide !== undefined) {
             this.orderIndex(res, this.hideFinished(await noteStore.all()));
         }
+        else {
+            this.switchTheme(req, res);
+        }
+
     }
 
     hideFinished(array) {

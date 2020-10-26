@@ -1,13 +1,16 @@
 <div class="container">
+
     <div class="row">
         <form action='/new' method='get'>
             <input class="col-md btn btn-primary" type='submit' value='create new Note'>
         </form>
 
-        <select class="col-md-2" onchange="this.form.submit()">
-            <option selected>Default</option>
-            <option>Dark</option>
-        </select>
+        <form action='/' method='post'>
+            <select class="col-md-2" onchange="this.form.submit()">
+                <option selected>Default</option>
+                <option>Dark</option>
+            </select>
+        </form>
 
     </div>
     <div class="row">
@@ -24,49 +27,34 @@
             <input type="submit" class="btn btn-primary" value="hide finished"/>
         </form>
     </div>
-    <div class="row">
-        <table>
-            <tr>
-                <th class="col-md-2">Task completion</th>
-                <th class="col-md-6">Title</th>
-                <th class="col-md-2">Creation Date</th>
-                <th class="col-md-2">Importance</th>
-            </tr>
 
-            <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseExample"
-                    aria-expanded="false" aria-controls="collapseExample">
-                Button with data-target
-            </button>
-            <div class="collapse" id="collapseExample">
-                <div class="card card-body">
-                    Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid.
-                    Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident.
-                </div>
+
+    <div class="grid-container">
+        <div class="grid-item"><h5>Task completion</h5></div>
+        <div class="grid-item"><h5>Title</h5></div>
+        <div class="grid-item"><h5>Creation Date</h5></div>
+        <div class="grid-item"><h5>Importance</h5></div>
+        <div class="grid-item"></div>
+
+        {{#each notes}}
+            <div class="grid-item">
+                {{#unless done}}
+                    <p>{{dueDate}}</p>
+                {{/unless}}
+                <p>is finished: {{{doneString}}}</p>
             </div>
-
-            {{#each notes}}
-                <tr>
-                    <td class="col-md-2">
-                        {{#unless done}}
-                            <p>{{dueDate}}</p>
-                        {{/unless}}
-                        <p>is finished: {{{doneString}}}</p>
-                    </td>
-                    <td class="col-md-6">
-                        <h3>{{title}}</h3>
-                        <textarea readonly>{{description}}</textarea>
-                    </td>
-                    <td class="col-md-2">{{creationDate}}</td>
-                    <td class="col-md-2">
-                        {{{importanceString}}}
-                    </td>
-                    <td class="col-md-1">
-                        <form action='/edit?id={{id}}' method='post'>
-                            <input class="btn btn-primary" type="submit" value="edit">
-                        </form>
-                    </td>
-                </tr>
-            {{/each}}
-        </table>
+            <div class="grid-item">
+                <h3>{{title}}</h3>
+                <textarea readonly>{{description}}</textarea>
+            </div>
+            <div class="grid-item"><p>{{creationDate}}</p></div>
+            <div class="grid-item"><p>{{{importanceString}}}</p></div>
+            <div class="grid-item">
+                <form action='/edit?id={{id}}' method='post'>
+                    <input class="btn btn-primary" type="submit" value="edit">
+                </form>
+            </div>
+        {{/each}}
     </div>
+
 </div>
