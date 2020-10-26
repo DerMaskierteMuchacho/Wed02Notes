@@ -15,7 +15,6 @@ export class NotesController {
     };
 
     async showIndex(req, res) {
-
         res.render("index",
             {
                 layout: 'layouts/layout',
@@ -43,10 +42,14 @@ export class NotesController {
     };
 
     async showEditNote(req, res) {
+        let id = req.query.id;
+        let hans = await noteStore.get(id);
+
         res.render("edit",
             {
                 layout: 'layouts/layout',
                 theme: styleController.getStyle(),
+                note: await noteStore.get(id),
             })
     };
 
