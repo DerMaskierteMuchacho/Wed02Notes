@@ -21,6 +21,18 @@ export class NoteStore {
         return await this.db.insert(note);
     }
 
+    async update(id, title, description, importance, dueDate, done)
+    {
+        return this.db.update({_id: id},
+            {$set:
+                    {"title": title,
+                     "description": description,
+                     "importance": importance,
+                     "dueDate": dueDate,
+                     "done": done,}
+                    }, () =>{});
+    }
+
     async delete(id) {
         await this.db.update({_id: id}, {$set: {"state": "DELETED"}}, () => {
         });

@@ -43,7 +43,6 @@ export class NotesController {
 
     async showEditNote(req, res) {
         let id = req.query.id;
-        let hans = await noteStore.get(id);
 
         res.render("edit",
             {
@@ -65,6 +64,25 @@ export class NotesController {
         //https://expressjs.com/en/guide/routing.html
     };
 
+    async edit(req, res) {
+        let id = req.query.id;
+        let title = req.body.title;
+
+        if (title !== undefined) {
+            await noteStore.update(
+                id,
+                req.body.title,
+                req.body.description,
+                req.body.importance,
+                req.body.dueDate,
+                req.body.done);
+            res.redirect('/');
+        } else if (id !== undefined) {
+            this.showEditNote(req, res);
+        }
+
+    }
+
     async orderBy(req, res) {
         if (req.query.orderby === 'dueDate') {
             this.orderIndex(res, orderHelper.orderByDueDate(await noteStore.all()));
@@ -74,8 +92,8 @@ export class NotesController {
             this.orderIndex(res, orderHelper.orderByImportance(await noteStore.all()));
         } else if (req.query.hide !== undefined) {
             this.orderIndex(res, this.hideFinished(await noteStore.all()));
-        }
-        else {
+        } else {
+            //TODO theme
             this.switchTheme(req, res);
         }
 
@@ -84,7 +102,7 @@ export class NotesController {
     hideFinished(array) {
         let filtered = [];
 
-        if(!this.hide) {
+        if (!this.hide) {
             array.forEach(function (item) {
                 if (!item.done) {
                     filtered.push(item);
@@ -92,9 +110,7 @@ export class NotesController {
             });
 
             this.hide = true;
-        }
-        else
-        {
+        } else {
             filtered = array;
             this.hide = false;
         }
