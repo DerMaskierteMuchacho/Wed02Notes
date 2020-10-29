@@ -1,4 +1,4 @@
-{"title":"testasdf","description":"hans und ueli","importance":"1","dueDate":"2020-10-30","creationDate":"09/10/2020","done":"true","_id":"1sjiJCmePZug8az0"}
+{"title":"testasdf","description":"hans und ueli","importance":"4","dueDate":"2020-10-30","creationDate":"09/10/2020","done":"on","_id":"1sjiJCmePZug8az0"}
 {"title":"123","description":"asdf","importance":"1","dueDate":"2020-10-30","creationDate":"10/11/2020","_id":"9usgcUsfbQqBiQ8w"}
 {"title":"asdfa","description":"asdf","importance":"5","dueDate":"2020-10-30","creationDate":"10/11/2020","_id":"HBqNiLzIpzsYjOz9"}
 {"title":"hans","description":"ueli","importance":"1","dueDate":"2020-10-30","creationDate":"10/11/2020","_id":"LVHPdxYB1EKw0YZi"}
@@ -17,6 +17,3 @@
 {"title":"123","description":"asdf","importance":"1","dueDate":"2020-10-30","creationDate":"10/11/2020","_id":"nXYltmwNwGtshsAq"}
 {"title":"new","description":"","importance":"1","dueDate":"2020-11-05","creationDate":"10/14/2020","_id":"o61iTGJCa7fycb6J"}
 {"title":"123","description":"asdf","importance":"1","dueDate":"2020-10-30","creationDate":"10/11/2020","_id":"zquvJLyimHvxFuIW"}
-{"title":"testasdf","description":"hans und ueli","importance":"3","dueDate":"2020-10-30","creationDate":"09/10/2020","done":"on","_id":"1sjiJCmePZug8az0"}
-{"title":"testasdf","description":"hans und ueli","importance":"4","dueDate":"2020-10-30","creationDate":"09/10/2020","_id":"1sjiJCmePZug8az0"}
-{"title":"testasdf","description":"hans und ueli","importance":"4","dueDate":"2020-10-30","creationDate":"09/10/2020","done":"on","_id":"1sjiJCmePZug8az0"}

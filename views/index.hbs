@@ -1,31 +1,42 @@
 <div class="container">
 
-    <div class="row">
-        <form action='/new' method='get'>
-            <input class="btn" type='submit' value='create new Note'>
-        </form>
+    <div class="grid-container-filter">
+        <div>
+            <form action='/new' method='get'>
+                <input class="btn" type='submit' value='create new Note'>
+            </form>
+        </div>
+        <div></div>
+        <div></div>
+        <div>
+            <form action='/' method='post'>
+                <select class="col-md-2" onchange="this.form.submit()">
+                    <option selected>Default</option>
+                    <option>Dark</option>
+                </select>
+            </form>
+        </div>
 
-        <form action='/' method='post'>
-            <select class="col-md-2" onchange="this.form.submit()">
-                <option selected>Default</option>
-                <option>Dark</option>
-            </select>
-        </form>
-
-    </div>
-    <div class="row">
-        <form action='/?orderby=dueDate' method='post'>
-            <input type="submit" class="btn" value="order by due date"/>
-        </form>
-        <form action='/?orderby=creationDate' method='post'>
-            <input type="submit" class="btn" value="order by creation date"/>
-        </form>
-        <form action='/?orderby=importance' method='post'>
-            <input type="submit" class="btn" value="order by importance"/>
-        </form>
-        <form action='/?hide=true' method='post'>
-            <input type="submit" class="btn" value="hide finished"/>
-        </form>
+        <div>
+            <form action='/?orderby=dueDate' method='post'>
+                <input type="submit" class="btn" value="order by due date"/>
+            </form>
+        </div>
+        <div>
+            <form action='/?orderby=creationDate' method='post'>
+                <input type="submit" class="btn" value="order by creation date"/>
+            </form>
+        </div>
+        <div>
+            <form action='/?orderby=importance' method='post'>
+                <input type="submit" class="btn" value="order by importance"/>
+            </form>
+        </div>
+        <div>
+            <form action='/?hide=true' method='post'>
+                <input type="submit" class="btn" value="hide finished"/>
+            </form>
+        </div>
     </div>
 
 

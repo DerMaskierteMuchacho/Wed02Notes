@@ -15,6 +15,7 @@
     /*grid-template-columns: auto auto auto auto auto;*/
 }
 
+.grid-container-add,
 .grid-container-edit{
     display: grid;
     grid-template-columns: auto 1fr;
@@ -25,10 +26,20 @@
     /*grid-template-columns: auto auto auto auto auto;*/
 }
 
+.grid-container-filter
+{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-row-gap: 10px;
+    margin-left: 3%;
+    margin-right: 3%;
+}
+
 .grid-item {
     border-bottom: 1px solid rgba(0, 0, 0, 0.8);
 }
 
+.grid-container-add,
 .grid-item-edit {
     //border: 1px solid black;
 }
