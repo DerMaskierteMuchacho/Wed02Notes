@@ -120,4 +120,10 @@ export class NotesController {
 
 }
 
+//TODO typescript
+//TODO cookies
+//TODO theme
+//TODO add/update 1 form
+//TODO style dynamic screen sizes
+
 export const notesController = new NotesController();
