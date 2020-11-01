@@ -1,6 +1,4 @@
-import {noteStore} from '../services/noteStore.js'
-
-export class OrderHelper {
+export class IndexHelper {
 
     constructor() {
         this.dueDateDesc = false;
@@ -9,7 +7,7 @@ export class OrderHelper {
     }
 
     orderByDueDate(array) {
-        var result = array.sort(function (a, b) {
+        let result = array.sort(function (a, b) {
             return new Date(b.dueDate) - new Date(a.dueDate);
         });
 
@@ -19,7 +17,7 @@ export class OrderHelper {
     }
 
     orderByCreationDate(array) {
-        var result = array.sort(function (a, b) {
+        let result = array.sort(function (a, b) {
             return new Date(b.creationDate) - new Date(a.creationDate);
         });
 
@@ -29,7 +27,7 @@ export class OrderHelper {
     }
 
     orderByImportance(array) {
-        var result = array.sort(function (a, b) {
+        let result = array.sort(function (a, b) {
             return b.importance - a.importance;
         });
 
@@ -40,4 +38,4 @@ export class OrderHelper {
 
 }
 
-export const orderHelper = new OrderHelper();
+export const indexHelper = new IndexHelper();
