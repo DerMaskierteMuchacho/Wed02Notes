@@ -2,7 +2,7 @@ import {noteStore} from '../services/noteStore.js'
 import {styleController} from "./styleController.js";
 import {orderHelper} from "../helpers/orderHelper.js";
 import {displayHelper} from "../helpers/displayHelper.js";
-//import {typescriptTest} from "../typescript/test.js";
+import {typescriptTest} from "../typescript/test.js";
 
 export class NotesController {
 
@@ -16,7 +16,7 @@ export class NotesController {
     };
 
     async showIndex(req, res) {
-        //console.log(typescriptTest.hans("hans", "Ueli"));
+        console.log(typescriptTest.hans("hans", "Ueli"));
         res.render("index",
             {
                 layout: 'layouts/layout',

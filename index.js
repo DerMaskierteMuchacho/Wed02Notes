@@ -1,5 +1,8 @@
+// @ts-ignore
 import express from 'express';
+// @ts-ignore
 import bodyParser from 'body-parser';
+// @ts-ignore
 import hbs from 'express-hbs';
 import path from 'path';
 import { noteRoutes } from './routes/noteRoutes.js';
