@@ -57,9 +57,11 @@ export class NotesController {
     ;
     showCreateNote(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
-            res.render("add", {
+            res.render("edit", {
                 layout: 'layouts/layout',
                 theme: this._theme,
+                action: "/new",
+                button: "Create"
             });
         });
     }
@@ -71,6 +73,8 @@ export class NotesController {
                 layout: 'layouts/layout',
                 theme: this._theme,
                 note: yield noteStore.get(id),
+                action: "/edit?id=" + id,
+                button: "Update"
             });
         });
     }
@@ -84,7 +88,7 @@ export class NotesController {
         });
     }
     ;
-    edit(req, res) {
+    editNote(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             let id = req.query.id;
             let title = req.body.title;
@@ -143,7 +147,6 @@ export class NotesController {
     }
     ;
 }
-//TODO add/update 1 form
 //TODO style dynamic screen sizes
 //TODO empty notiz anzeigen
 //TODO keep filter and sorting after reload

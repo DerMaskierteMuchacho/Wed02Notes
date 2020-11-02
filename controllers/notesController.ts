@@ -54,10 +54,12 @@ export class NotesController {
     };
 
     async showCreateNote(req: IncomingMessage, res: any) {
-        res.render("add",
+        res.render("edit",
             {
                 layout: 'layouts/layout',
                 theme: this._theme,
+                action: "/new",
+                button: "Create"
             })
     };
 
@@ -69,6 +71,8 @@ export class NotesController {
                 layout: 'layouts/layout',
                 theme: this._theme,
                 note: await noteStore.get(id),
+                action: "/edit?id="+id,
+                button: "Update"
             })
     };
 
@@ -84,7 +88,7 @@ export class NotesController {
         //https://expressjs.com/en/guide/routing.html
     };
 
-    async edit(req: any, res: any) {
+    async editNote(req: any, res: any) {
         let id = req.query.id;
         let title = req.body.title;
 
@@ -146,7 +150,6 @@ export class NotesController {
     };
 }
 
-//TODO add/update 1 form
 //TODO style dynamic screen sizes
 //TODO empty notiz anzeigen
 //TODO keep filter and sorting after reload
