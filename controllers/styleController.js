@@ -2,7 +2,6 @@ export class StyleController {
 
     constructor() {
         this.styles = ["default", "dark"];
-        this.currentStyle = "default";
     }
 
     getStyles()
@@ -10,14 +9,12 @@ export class StyleController {
         return this.styles;
     }
 
-    getStyle() {
-        //https://www.tutorialspoint.com/expressjs/expressjs_cookies.htm
-        return this.currentStyle;
-    };
-
-    switchStyle(style)
+    getNextStyle(currentStyle)
     {
-        this.currentStyle = style;
+        let index = this.styles.indexOf(currentStyle);
+        index = index < this.styles.length-1 ? index+1: 0;
+
+        return this.styles[index];
     }
 }
 export const styleController = new StyleController();

@@ -12,21 +12,33 @@ import { styleController } from "./styleController.js";
 import { indexHelper } from "../helpers/indexHelper.js";
 import { displayHelper } from "../helpers/displayHelper.js";
 export class NotesController {
-    constructor() {
-        this.hide = false;
+    initCookies(req, res) {
+        this._theme = req.cookies["theme"];
+        if (this._theme === "undefined" || this._theme == undefined) {
+            res.cookie("theme", "default");
+            this._theme = "default";
+        }
+        this._hideFinished = req.cookies["theme"];
+        if (this._hideFinished == undefined) {
+            res.cookie("hideFinished", false);
+            this._hideFinished = false;
+        }
+        console.log('Cookies: ', req.cookies);
+        /*
+        console.log('Cookies: ', req.cookies);
+        console.log('Signed Cookies: ', req.signedCookies);
+
+        console.log("getting theme cookie: " + req.cookies["theme"]);
+
+        res.cookie("theme", "default");
+         */
     }
-    switchTheme(req, res) {
-        return __awaiter(this, void 0, void 0, function* () {
-            styleController.switchStyle("dark");
-            this.showIndex(req, res);
-        });
-    }
-    ;
     showIndex(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
+            this.initCookies(req, res);
             res.render("index", {
                 layout: 'layouts/layout',
-                theme: styleController.getStyle(),
+                theme: this._theme,
                 notes: displayHelper.getDisplayObj(yield noteStore.all())
             });
             //https://hackersandslackers.com/handlebars-templates-expressjs/
@@ -37,7 +49,7 @@ export class NotesController {
         return __awaiter(this, void 0, void 0, function* () {
             res.render("index", {
                 layout: 'layouts/layout',
-                theme: styleController.getStyle(),
+                theme: this._theme,
                 notes: displayHelper.getDisplayObj(list)
             });
         });
@@ -47,7 +59,7 @@ export class NotesController {
         return __awaiter(this, void 0, void 0, function* () {
             res.render("add", {
                 layout: 'layouts/layout',
-                theme: styleController.getStyle(),
+                theme: this._theme,
             });
         });
     }
@@ -57,7 +69,7 @@ export class NotesController {
             let id = req.query.id;
             res.render("edit", {
                 layout: 'layouts/layout',
-                theme: styleController.getStyle(),
+                theme: this._theme,
                 note: yield noteStore.get(id),
             });
         });
@@ -107,24 +119,33 @@ export class NotesController {
     }
     hideFinished(array) {
         let filtered = [];
-        if (!this.hide) {
+        if (!this._hideFinished) {
             array.forEach(function (item) {
                 if (!item.done) {
                     filtered.push(item);
                 }
             });
-            this.hide = true;
+            this._hideFinished = true;
         }
         else {
             filtered = array;
-            this.hide = false;
+            this._hideFinished = false;
         }
         return filtered;
     }
+    switchTheme(req, res) {
+        return __awaiter(this, void 0, void 0, function* () {
+            let newStyle = styleController.getNextStyle(this._theme);
+            res.cookie("theme", newStyle);
+            this._theme = newStyle;
+            console.log("changing theme to: " + this._theme);
+            res.redirect('/');
+        });
+    }
+    ;
 }
 //TODO typescript
-//TODO cookies
-//TODO theme
 //TODO add/update 1 form
 //TODO style dynamic screen sizes
+//TODO empty notiz anzeigen
 export const notesController = new NotesController();
