@@ -113,7 +113,6 @@ export class NotesController {
         } else if (req.query.hide !== undefined) {
             this.orderIndex(res, this.hideFinished(await noteStore.all()));
         } else {
-            //TODO theme
             this.switchTheme(req, res);
         }
 
@@ -147,9 +146,9 @@ export class NotesController {
     };
 }
 
-//TODO typescript
 //TODO add/update 1 form
 //TODO style dynamic screen sizes
 //TODO empty notiz anzeigen
+//TODO keep filter and sorting after reload
 
 export const notesController = new NotesController();
