@@ -32,3 +32,8 @@ textarea {
     color: white;
 }
 
+#noItems
+{
+    background-color: var(--main-color);
+}
+

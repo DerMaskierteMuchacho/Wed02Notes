@@ -83,3 +83,9 @@ body {
 .slider{
     float: left;
 }
+
+#noItems
+{
+    border-radius: 15px;
+    text-align: center;
+}

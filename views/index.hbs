@@ -9,12 +9,6 @@
         <div></div>
         <div></div>
         <div>
-<!--            <form action='/' method='post'>-->
-<!--                <select class="col-md-2" onchange="this.form.submit()">-->
-<!--                    <option selected>Default</option>-->
-<!--                    <option>Dark</option>-->
-<!--                </select>-->
-<!--            </form>-->
             <form action='/' method='post'>
                 <input type="submit" class="btn" value="switch style"/>
             </form>
@@ -42,32 +36,38 @@
         </div>
     </div>
 
-    <div class="grid-container-main">
-        <div class="grid-item"><h2>Task completion</h2></div>
-        <div class="grid-item"><h2>Title</h2></div>
-        <div class="grid-item"><h2>Creation Date</h2></div>
-        <div class="grid-item"><h2>Importance</h2></div>
-        <div class="grid-item"></div>
+    {{#if notes.length}}
+        <div class="grid-container-main">
+            <div class="grid-item"><h2>Task completion</h2></div>
+            <div class="grid-item"><h2>Title</h2></div>
+            <div class="grid-item"><h2>Creation Date</h2></div>
+            <div class="grid-item"><h2>Importance</h2></div>
+            <div class="grid-item"></div>
 
-        {{#each notes}}
-            <div class="grid-item">
-                {{#unless done}}
-                    <p>{{dueDate}}</p>
-                {{/unless}}
-                <p>is finished: {{{doneString}}}</p>
-            </div>
-            <div class="grid-item">
-                <h3>{{title}}</h3>
-                <textarea class="indexTextArea" readonly>{{description}}</textarea>
-            </div>
-            <div class="grid-item"><p>{{creationDate}}</p></div>
-            <div class="grid-item"><p>{{{importanceString}}}</p></div>
-            <div class="grid-item">
-                <form action='/edit?id={{id}}' method='post'>
-                    <input class="btn right-item" type="submit" value="edit">
-                </form>
-            </div>
-        {{/each}}
-    </div>
+            {{#each notes}}
+                <div class="grid-item">
+                    {{#unless done}}
+                        <p>{{dueDate}}</p>
+                    {{/unless}}
+                    <p>is finished: {{{doneString}}}</p>
+                </div>
+                <div class="grid-item">
+                    <h3>{{title}}</h3>
+                    <textarea class="indexTextArea" readonly>{{description}}</textarea>
+                </div>
+                <div class="grid-item"><p>{{creationDate}}</p></div>
+                <div class="grid-item"><p>{{{importanceString}}}</p></div>
+                <div class="grid-item">
+                    <form action='/edit?id={{id}}' method='post'>
+                        <input class="btn right-item" type="submit" value="edit">
+                    </form>
+                </div>
+            {{/each}}
+        </div>
+    {{else}}
+        <div id="noItems">
+            <h2>No items found...</h2>
+        </div>
+    {{/if}}
 
 </div>

@@ -21,3 +21,13 @@ body {
 .checked {
     color: orange;
 }
+
+#noItems
+{
+    background-color: var(--main-color);
+}
+
+#noItems > h2
+{
+    color: white;
+}
