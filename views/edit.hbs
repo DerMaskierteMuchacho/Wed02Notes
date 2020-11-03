@@ -1,42 +1,41 @@
 <h1 class="text-center">Edit Note</h1>
 <hr>
 <form action='{{action}}' method='post'>
-<div class="grid-container-edit">
-
-    <div class="grid-item-edit">
-        <label for="title">Title</label>
+    <div class="grid-container-edit">
+        <div class="grid-item-edit">
+            <label for="title">Title</label>
+        </div>
+        <div class="grid-item-edit">
+            <input type="text" name="title" id="title" value="{{note.title}}" required/>
+        </div>
+        <div class="grid-item-edit">
+            <label for="description">Description</label>
+        </div>
+        <div class="grid-item-edit">
+            <textarea id="description" name="description">{{note.description}}</textarea>
+        </div>
+        <div class="grid-item-edit">
+            <label for="importance">Importance</label>
+        </div>
+        <div class="grid-item-edit sliderContainer">
+            <p class="slider">low</p>
+            <input class="slider" name="importance" type="range" min="1" max="5" value="{{note.importance}}"
+                   id="importance">
+            <p class="slider">high</p>
+        </div>
+        <div class="grid-item-edit">
+            <label for="dueDate">due Date</label>
+        </div>
+        <div class="grid-item-edit">
+            <input type="date" id="dueDate" name="dueDate" value="{{note.dueDate}}" required/>
+        </div>
+        <div class="grid-item-edit">
+            <label for="done">Done</label>
+        </div>
+        <div class="grid-item-edit">
+        <input type="checkbox" id="done" {{#if note.done}} checked="true" {{/if}}" name="done"/>
+        </div>
     </div>
-    <div class="grid-item-edit">
-        <input type="text" name="title" id="title" value="{{note.title}}" required/>
-    </div>
-    <div class="grid-item-edit">
-        <label for="description">Description</label>
-    </div>
-    <div class="grid-item-edit">
-        <textarea id="description" name="description">{{note.description}}</textarea>
-    </div>
-    <div class="grid-item-edit">
-        <label for="importance">Importance</label>
-    </div>
-    <div class="grid-item-edit">
-        <p class="slider">low</p>
-        <input class="slider" name="importance" type="range" min="1" max="5" value="{{note.importance}}"
-               id="importance">
-        <p class="slider">high</p>
-    </div>
-    <div class="grid-item-edit">
-        <label for="dueDate">due Date</label>
-    </div>
-    <div class="grid-item-edit">
-        <input type="date" id="dueDate" name="dueDate" value="{{note.dueDate}}" required/>
-    </div>
-    <div class="grid-item-edit">
-        <label for="done">Done</label>
-    </div>
-    <div class="grid-item-edit">
-    <input type="checkbox" id="done" {{#if note.done}} checked="true" {{/if}}" name="done"/>
-    </div>
-</div>
 
     <input class="btn" type="submit" value="{{button}}"/>
 </form>

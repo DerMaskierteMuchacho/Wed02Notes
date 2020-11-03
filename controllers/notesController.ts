@@ -151,7 +151,5 @@ export class NotesController {
 }
 
 //TODO style dynamic screen sizes
-//TODO empty notiz anzeigen
-//TODO keep filter and sorting after reload
 
 export const notesController = new NotesController();
