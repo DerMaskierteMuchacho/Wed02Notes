@@ -1,5 +1,14 @@
-import Datastore from 'nedb'
-
+var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+    });
+};
+// @ts-ignore
+import Datastore from 'nedb-promise';
 export class Note {
     constructor(title, description, importance, dueDate, done) {
         this.title = title;
@@ -10,50 +19,43 @@ export class Note {
         this.done = done;
     }
 }
-
 export class NoteStore {
-    constructor(db) {
-        this.db = db || new Datastore({filename: './data/notes.db', autoload: true});
+    constructor() {
+        this.db = new Datastore({ filename: './data/notes.db', autoload: true });
     }
-
-    async add(title, description, importance, dueDate, done) {
-        let note = new Note(title, description, importance, dueDate, done);
-        return await this.db.insert(note);
-    }
-
-    async update(id, title, description, importance, dueDate, done)
-    {
-        return this.db.update({_id: id},
-            {$set:
-                    {"title": title,
-                     "description": description,
-                     "importance": importance,
-                     "dueDate": dueDate,
-                     "done": done,}
-                    }, () =>{});
-    }
-
-    async delete(id) {
-        await this.db.update({_id: id}, {$set: {"state": "DELETED"}}, () => {
-        });
-        return await this.get(id, () => {
+    add(title, description, importance, dueDate, done) {
+        return __awaiter(this, void 0, void 0, function* () {
+            let note = new Note(title, description, importance, dueDate, done);
+            return yield this.db.insert(note);
         });
     }
-
-    async get(id) {
-        return await this.db.getDataById(id);
+    update(id, title, description, importance, dueDate, done) {
+        return __awaiter(this, void 0, void 0, function* () {
+            yield this.db.update({ _id: id }, {
+                $set: {
+                    "title": title,
+                    "description": description,
+                    "importance": importance,
+                    "dueDate": dueDate,
+                    "done": done,
+                }
+            }, { returnUpdatedDocs: false });
+        });
     }
-
-    async all() {
-         return await this.db.getAllData();
-        //return await this.db.find({});
+    delete(id) {
+        return __awaiter(this, void 0, void 0, function* () {
+            yield this.db.remove({ _id: id });
+        });
     }
-
-    async getAllObjects(instance, callback, res) {
-        this.db.find({}, function (err, docs) {
-            return callback(instance, err, docs, res);
+    get(id) {
+        return __awaiter(this, void 0, void 0, function* () {
+            return yield this.db.findOne({ _id: id });
+        });
+    }
+    all() {
+        return __awaiter(this, void 0, void 0, function* () {
+            return yield this.db.find({});
         });
     }
 }
-
 export const noteStore = new NoteStore();

@@ -18,59 +18,46 @@ export class NotesController {
             res.cookie("theme", "default");
             this._theme = "default";
         }
-        this._hideFinished = req.cookies["theme"];
-        if (this._hideFinished == undefined) {
-            res.cookie("hideFinished", false);
-            this._hideFinished = false;
-        }
         console.log('Cookies: ', req.cookies);
-        /*
-        console.log('Cookies: ', req.cookies);
-        console.log('Signed Cookies: ', req.signedCookies);
-
-        console.log("getting theme cookie: " + req.cookies["theme"]);
-
-        res.cookie("theme", "default");
-         */
     }
     showIndex(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             this.initCookies(req, res);
             res.render("index", {
                 layout: 'layouts/layout',
+                title: "Super Awesome Note Management Supervision System",
                 theme: this._theme,
                 notes: displayHelper.getDisplayObj(yield noteStore.all())
             });
-            //https://hackersandslackers.com/handlebars-templates-expressjs/
         });
     }
-    ;
     orderIndex(res, list) {
         return __awaiter(this, void 0, void 0, function* () {
             res.render("index", {
                 layout: 'layouts/layout',
+                title: "Super Awesome Note Management Supervision System",
                 theme: this._theme,
                 notes: displayHelper.getDisplayObj(list)
             });
         });
     }
-    ;
     showCreateNote(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             res.render("edit", {
                 layout: 'layouts/layout',
+                title: "Create a new super awesome dynamic ultimate note",
                 theme: this._theme,
                 action: "/new",
                 button: "Create"
             });
         });
     }
-    ;
     showEditNote(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             let id = req.query.id;
             res.render("edit", {
                 layout: 'layouts/layout',
+                title: "edit note \"this isn't even my final form\" ultimate2",
                 theme: this._theme,
                 note: yield noteStore.get(id),
                 action: "/edit?id=" + id,
@@ -78,7 +65,6 @@ export class NotesController {
             });
         });
     }
-    ;
     createNote(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             yield noteStore.add(req.body.title, req.body.description, req.body.importance, req.body.dueDate, req.body.done);
@@ -87,7 +73,6 @@ export class NotesController {
             //https://expressjs.com/en/guide/routing.html
         });
     }
-    ;
     editNote(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             let id = req.query.id;
@@ -128,16 +113,16 @@ export class NotesController {
                     filtered.push(item);
                 }
             });
-            this._hideFinished = true;
         }
         else {
             filtered = array;
-            this._hideFinished = false;
         }
+        this._hideFinished = !this._hideFinished;
         return filtered;
     }
     switchTheme(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
+            // @ts-ignore
             let newStyle = styleController.getNextStyle(this._theme);
             res.cookie("theme", newStyle);
             this._theme = newStyle;
@@ -145,7 +130,5 @@ export class NotesController {
             res.redirect('/');
         });
     }
-    ;
 }
-//TODO style dynamic screen sizes
 export const notesController = new NotesController();

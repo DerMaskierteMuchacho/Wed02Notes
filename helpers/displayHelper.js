@@ -31,6 +31,7 @@ export class DisplayHelper {
                 }
             }
             let newItem = DisplayHelper.createDisplayNote(item, starString, doneString);
+            // @ts-ignore
             newArray[index] = newItem;
             index++;
         });

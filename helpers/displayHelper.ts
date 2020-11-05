@@ -1,11 +1,11 @@
 export class DisplayHelper {
 
-    getDisplayObj(array) {
+    getDisplayObj(array: any) {
         let newArray: string | any[] = [];
         newArray.length = array.length;
         let index = 0;
 
-        array.forEach(function (item) {
+        array.forEach(function (item: any) {
             //create stars
             let stars = item.importance;
             let i = 0;
@@ -36,6 +36,7 @@ export class DisplayHelper {
             }
 
             let newItem = DisplayHelper.createDisplayNote(item, starString, doneString);
+            // @ts-ignore
             newArray[index] = newItem;
             index++;
         });
@@ -43,7 +44,7 @@ export class DisplayHelper {
         return newArray;
     };
 
-    static createDisplayNote(item, importanceString, doneString) {
+    static createDisplayNote(item: any, importanceString: string, doneString: string) {
         let displayNote =
             {
                 id: item._id,

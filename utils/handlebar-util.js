@@ -1,8 +1,14 @@
+// @ts-ignore
 export function registerHelpers(hbs) {
+    // @ts-ignore
     hbs.registerHelper('if_eq', function (a, b, opts) {
         if (a === b)
-            return opts.fn(this);
+            { // @ts-ignore
+                return opts.fn(this);
+            }
         else
-            return opts.inverse(this);
+            { // @ts-ignore
+                return opts.inverse(this);
+            }
     });
 }
